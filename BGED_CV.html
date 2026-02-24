@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CV — Enock David — Développeur Fullstack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      :root {
+        --primary: #1a1a1a;
+        --muted: #555;
+        --light: #f9f8f7;
+        --accent: #d4a574;
+        --border: #e5e0db;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: 'Raleway', sans-serif;
+        background: linear-gradient(135deg, #fafaf8 0%, #f3ede4 100%);
+        color: var(--primary);
+        line-height: 1.6;
+      }
+      
+      .cv-container {
+        max-width: 850px;
+        margin: 30px auto;
+        background: white;
+        box-shadow: 0 10px 50px rgba(0,0,0,.1);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      
+      .cv-header {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 30px;
+        padding: 40px;
+        background: linear-gradient(135deg, #f9f8f7 0%, #efefeb 100%);
+        border-bottom: 2px solid var(--accent);
+      }
+      
+      .cv-photo {
+        width: 140px;
+        height: 173px;
+        border-radius: 17%;
+        overflow: hidden;
+        border: 3px solid var(--accent);
+        box-shadow: 0 4px 15px rgba(0,0,0,.08);
+      }
+      
+      .cv-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .cv-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .cv-name {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+      }
+      
+      .cv-role {
+        font-size: 14px;
+        color: var(--accent);
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      
+      .cv-contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      
+      .cv-contact span { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+      .cv-contact span i { color: var(--accent); font-size: 14px; }
+      
+      .cv-body {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 0;
+      }
+      
+      .cv-sidebar {
+        background: var(--light);
+        padding: 40px 28px;
+        border-right: 1px solid var(--border);
+      }
+      
+      .cv-main {
+        padding: 40px;
+      }
+      
+      .cv-section {
+        margin-bottom: 28px;
+      }
+      
+      .cv-section h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--primary);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--accent);
+      }
+      
+      .cv-item {
+        margin-bottom: 12px;
+        font-size: 13px;
+      }
+      
+      .cv-item strong {
+        color: var(--primary);
+        display: block;
+        margin-bottom: 2px;
+      }
+      
+      .cv-item em {
+        color: var(--accent);
+        font-style: normal;
+      }
+      
+      .cv-experience-item {
+        margin-bottom: 18px;
+      }
+      
+      .cv-exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 4px;
+      }
+      
+      .cv-exp-title {
+        font-weight: 600;
+        color: var(--primary);
+        font-size: 14px;
+      }
+      
+      .cv-exp-date {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      
+      .cv-exp-desc {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 6px;
+        line-height: 1.5;
+      }
+      
+      .cv-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      
+      .cv-tag {
+        background: var(--light);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 4px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        display: inline-block;
+      }
+      
+      .cv-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        padding: 20px 40px;
+        background: var(--light);
+        border-top: 1px solid var(--border);
+      }
+      
+      .cv-btn {
+        padding: 10px 20px;
+        border-radius: 4px;
+        border: none;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+      }
+      
+      .cv-btn-primary {
+        background: var(--accent);
+        color: white;
+      }
+      
+      .cv-btn-primary:hover {
+        background: #c99459;
+        box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+      }
+      
+      .cv-btn-secondary {
+        background: white;
+        color: var(--primary);
+        border: 1px solid var(--border);
+      }
+      
+      .cv-btn-secondary:hover {
+        background: var(--light);
+        border-color: var(--accent);
+      }
+      
+      @media (max-width: 768px) {
+        .cv-header { grid-template-columns: 1fr; gap: 20px; }
+        .cv-body { grid-template-columns: 1fr; }
+        .cv-sidebar { border-right: none; border-bottom: 1px solid var(--border); padding: 30px 40px; }
+        .cv-actions { flex-direction: column-reverse; }
+        .cv-container { margin: 15px; }
+      }
+      
+      @media print {
+        body { background: white; }
+        .cv-actions { display: none; }
+        .cv-container { box-shadow: none; margin: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="cv-container">
+      <!-- Header -->
+      <header class="cv-header">
+        <div class="cv-photo">
+          <img src="bged_cv.jpeg" alt="Enock David" />
+        </div>
+        <div class="cv-title">
+          <h1 class="cv-name">Enock David</h1>
+          <div class="cv-role">Développeur Fullstack — Génie Logiciel</div>
+          <div class="cv-contact">
+            <span><i class="fas fa-envelope"></i> enockblitto657@gmail.com</span>
+            <span><i class="fas fa-phone"></i> +225 07 01 41 21 73</span>
+            <span><i class="fas fa-map-marker-alt"></i> Côte d'Ivoire</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="cv-body">
+        <!-- Sidebar -->
+        <aside class="cv-sidebar">
+          <section class="cv-section">
+            <h3>Compétences</h3>
+            <div class="cv-item"><strong>Frontend</strong> React JS, HTML/CSS, JavaScript</div>
+            <div class="cv-item"><strong>Backend</strong> Laravel, Node.js, Python</div>
+            <div class="cv-item"><strong>Base de données</strong> MySQL, PostgreSQL</div>
+            <div class="cv-item"><strong>Outils</strong> Git, REST APIs, Postman</div>
+            <div class="cv-item"><strong>Design</strong> PixelLab, UI/UX, Figma</div>
+          </section>
+
+          <section class="cv-section">
+            <h3>Langues</h3>
+            <div class="cv-item"><em>Français</em> courant</div>
+            <div class="cv-item"><em>Anglais</em> intermédiaire</div>
+          </section>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="cv-main">
+          <section class="cv-section">
+            <h3>Profil</h3>
+            <p style="font-size: 13.5px; color: var(--primary); line-height: 1.7;">
+              Développeur Fullstack passionné par la création d'applications web performantes et ergonomiques. 
+              Maîtrise de l'écosystème web moderne (frontend/backend) avec une sensibilité particulière au design 
+              et à l'expérience utilisateur. Recherche des défis techniques stimulants et des projets innovants.
+            </p>
+          </section>
+
+          <section class="cv-section">
+            <h3>Expérience & Réalisations</h3>
+            
+            <div class="cv-experience-item">
+              <div class="cv-exp-header">
+                <span class="cv-exp-title">Projets Fullstack Académiques</span>
+                <span class="cv-exp-date">2024–2025</span>
+              </div>
+              <div class="cv-exp-desc">
+                Conception et développement d'applications web complètes : architecture MVC, intégration de bases de données, 
+                APIs REST, interfaces responsives. Stack : React + Laravel/Node.js + MySQL.
+              </div>
+              <div class="cv-tags">
+                <span class="cv-tag">React</span>
+                <span class="cv-tag">Laravel</span>
+                <span class="cv-tag">API REST</span>
+                <span class="cv-tag">MySQL</span>
+              </div>
+            </div>
+
+            <div class="cv-experience-item">
+              <div class="cv-exp-header">
+                <span class="cv-exp-title">Design UI/UX - Branding</span>
+                <span class="cv-exp-date">2023–2025</span>
+              </div>
+              <div class="cv-exp-desc">
+                Création d'identités visuelles, mockups et wireframes pour projets personnels. 
+                Maîtrise des principes de design et accessibilité web.
+              </div>
+              <div class="cv-tags">
+                <span class="cv-tag">PixelLab</span>
+                <span class="cv-tag">Design System</span>
+                <span class="cv-tag">Figma</span>
+              </div>
+            </div>
+
+            <div class="cv-experience-item">
+              <div class="cv-exp-header">
+                <span class="cv-exp-title">Portfolio Web Responsive</span>
+                <span class="cv-exp-date">2024–Présent</span>
+              </div>
+              <div class="cv-exp-desc">
+                Portfolio web optimisé et responsive : performance web, SEO, accessibilité WCAG. 
+                Contributions continues et apprentissage via projets collaboratifs.
+              </div>
+              <div class="cv-tags">
+                <span class="cv-tag">HTML/CSS/JS</span>
+                <span class="cv-tag">Responsive Design</span>
+                <span class="cv-tag">Performance</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="cv-section">
+            <h3>Formation</h3>
+            <div class="cv-experience-item">
+              <div class="cv-exp-header">
+                <span class="cv-exp-title">Licence Génie Logiciel</span>
+                <span class="cv-exp-date">En cours</span>
+              </div>
+              <div class="cv-exp-desc">
+                Formation universitaire approfondie en informatique, conception de logiciels, 
+                architecture système, base de données et bonnes pratiques de développement.
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <!-- Actions -->
+      <div class="cv-actions">
+        <a href="index.html" class="cv-btn cv-btn-secondary"><i class="fas fa-arrow-left"></i> Retour</a>
+        <a href="#" class="cv-btn cv-btn-primary" id="printBtn">Télécharger PDF</a>
+      </div>
+    </article>
+
+    <script>
+      document.getElementById('printBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.print();
+      });
+    </script>
+  </body>
+</html>
