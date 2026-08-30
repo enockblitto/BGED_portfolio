@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BGED | Blitto Gauze Enock David – Développeur Fullstack</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>BGED | Portfolio</title>
+<!-- FAVICON -->
+<link rel="icon" type="image/jpeg" href="image/BGED_favicon.jpeg"  sizes="any">
 
 <!-- ═══════════ SVG SPRITE ═══════════ -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -458,8 +459,14 @@ img { max-width:100%; display:block }
 .proj-card:hover { border-color:var(--gold); transform:translateY(-8px); box-shadow:0 26px 70px rgba(0,0,0,.4) }
 
 .proj-thumb {
-  height:180px; display:flex; align-items:center; justify-content:center;
-  position:relative; overflow:hidden; flex-shrink:0;
+  height:160px; display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden; flex-shrink:0; background:#110d0a;
+}
+.proj-thumb img {
+  width:100%; height:100%; max-width:100%; max-height:100%;
+  display:block; object-fit:contain; object-position:center;
+  background:#0f0a08; padding:10px; box-sizing:border-box;
+  border-radius:12px;
 }
 .proj-thumb .ic { color:var(--gold); opacity:.38; transition:all .35s }
 .proj-card:hover .proj-thumb .ic { opacity:.85; transform:scale(1.1) }
@@ -505,31 +512,82 @@ img { max-width:100%; display:block }
 .design-intro { font-size:15px; line-height:1.85; color:rgba(245,236,215,.62); max-width:580px; margin-bottom:44px }
 
 .design-grid {
-  display:grid; grid-template-columns:repeat(4,1fr);
-  grid-auto-rows:160px; gap:14px;
+  display:grid; grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:12px;
 }
 .design-grid .span2 { grid-column:span 2 }
 
 .d-item {
-  border-radius:var(--r); border:1px solid rgba(201,145,74,.13);
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
-  cursor:pointer; overflow:hidden; position:relative; transition:all .4s;
+  position:relative; overflow:hidden;
+  aspect-ratio: 4 / 5;
+  min-height:180px;
+  border-radius:12px; border:1px solid rgba(201,145,74,.13);
+  cursor:pointer; background:#120d09; transition:all .4s;
+  box-shadow:0 12px 34px rgba(0,0,0,.18);
 }
-.d-item:nth-child(1) { background:linear-gradient(135deg,#2C1810,#4A2C17) }
-.d-item:nth-child(2) { background:linear-gradient(135deg,#1a2c10,#2c4a17) }
-.d-item:nth-child(3) { background:linear-gradient(135deg,#101a2c,#172c4a) }
-.d-item:nth-child(4) { background:linear-gradient(135deg,#2c1a10,#4a2c17) }
-.d-item:nth-child(5) { background:linear-gradient(135deg,#2c2010,#4a3817) }
-.d-item:nth-child(6) { background:linear-gradient(135deg,#201028,#3a1a44) }
-.d-item:nth-child(7) { background:linear-gradient(135deg,#102028,#1a3044) }
-.d-item .ic { color:var(--gold); opacity:.4; transition:all .35s }
-.d-item:hover { border-color:var(--gold); box-shadow:0 16px 50px rgba(0,0,0,.5) }
-.d-item:hover .ic { opacity:1; transform:scale(1.1) }
+.d-item::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(5,4,3,0) 35%, rgba(11,7,4,0.85) 100%);
+}
+.d-item:hover { border-color:var(--gold); box-shadow:0 16px 50px rgba(0,0,0,.45); transform:translateY(-4px) }
+.d-item.is-hidden { display:none !important; }
+.d-visual {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:#0d0907;
+}
+.d-visual img {
+  width:100%; height:100%; max-width:100%; max-height:100%;
+  display:block; object-fit:contain; object-position:center;
+  background:#0d0907; filter:saturate(.95) contrast(1.04);
+  box-sizing:border-box;
+  transition:transform .45s ease, filter .45s ease;
+}
+.d-item:hover .d-visual img {
+  transform:scale(1.04);
+  filter:saturate(1.08) contrast(1.08);
+}
 .d-label {
-  font-family:var(--fm); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold);
-  opacity:0; transform:translateY(6px); transition:all .3s;
+  position:absolute; left:16px; right:16px; bottom:12px;
+  z-index:1; font-family:var(--fm); font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--cream2); background:rgba(8,5,3,.26); border:1px solid rgba(201,145,74,.18);
+  border-radius:999px; padding:8px 10px; text-align:center;
+  backdrop-filter:blur(3px);
 }
-.d-item:hover .d-label { opacity:1; transform:none }
+.design-toggle {
+  margin-top:24px; border:1px solid rgba(201,145,74,.22); border-radius:999px;
+  background:rgba(201,145,74,.06); color:var(--gold); padding:12px 22px;
+  font-family:var(--fm); font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  transition:all .25s ease; cursor:pointer;
+}
+.design-toggle:hover {
+  background:rgba(201,145,74,.12); border-color:var(--gold); transform:translateY(-2px);
+}
+.design-modal {
+  position:fixed; inset:0; z-index:2000; display:none; align-items:center; justify-content:center;
+  background:rgba(8, 5, 3, 0.88); padding:32px;
+}
+.design-modal.show {
+  display:flex;
+}
+.design-modal-frame {
+  position:relative; max-width:min(92vw, 920px); width:100%; max-height:90vh;
+  display:flex; align-items:center; justify-content:center; background:rgba(21, 14, 10, 0.8);
+  border:1px solid rgba(201,145,74,.24); border-radius:18px; padding:18px; box-shadow:0 24px 80px rgba(0,0,0,.45);
+}
+.design-modal-img {
+  width:100%; max-width:100%; max-height:80vh; object-fit:contain; display:block;
+  border-radius:12px; background:#120d09; box-sizing:border-box;
+}
+.design-modal-close {
+  position:absolute; top:14px; right:14px; width:38px; height:38px; border-radius:50%;
+  background:rgba(201,145,74,.14); border:1px solid rgba(201,145,74,.26); color:var(--cream2);
+  font-size:28px; line-height:1; display:flex; align-items:center; justify-content:center; cursor:pointer;
+}
+.design-modal-label {
+  position:absolute; left:18px; bottom:18px; right:18px; text-align:center; color:var(--cream2);
+  background:rgba(8,5,3,.45); border:1px solid rgba(201,145,74,.18); border-radius:999px;
+  font-family:var(--fm); font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:10px 14px;
+}
 
 /* ══════════════════════════════════════════
    CONTACT — sans formulaire
@@ -690,7 +748,7 @@ footer {
   .skills-grid  { grid-template-columns:1fr 1fr }
   .proj-grid    { grid-template-columns:1fr 1fr }
 
-  .design-grid  { grid-template-columns:repeat(2,1fr) }
+  .design-grid  { grid-template-columns:repeat(3, minmax(0, 1fr)) }
   .design-grid .span2 { grid-column:span 1 }
 
   .clinks-grid  { grid-template-columns:1fr 1fr }
@@ -729,7 +787,7 @@ footer {
   .skills-grid  { grid-template-columns:1fr }
   .proj-grid    { grid-template-columns:1fr }
 
-  .design-grid  { grid-template-columns:1fr 1fr; grid-auto-rows:130px }
+  .design-grid  { grid-template-columns:repeat(2, minmax(0, 1fr)); }
   .design-grid .span2 { grid-column:span 2 }
 
   .clinks-grid  { grid-template-columns:1fr 1fr }
@@ -833,7 +891,7 @@ footer {
   </div>
 
   <div class="hero-right">
-    <img src="enock_BLITTO.jpeg" alt="Enock David" class="profile-image" />
+    <img src="/image/enock_BLITTO.jpeg" alt="Enock David" class="profile-image" />
   </div>
 </section>
 
@@ -961,31 +1019,31 @@ footer {
 
     <div class="proj-card reveal">
       <div class="proj-thumb">
-        <span class="ic ic-lg"><svg><use href="#i-db"/></svg></span>
+        <img src="image/BGED_immobilier.jpeg" alt="BGED Immobilier" />
         <div class="proj-overlay">
-          <a href="https://github.com/blittobged" target="_blank" rel="noopener" class="ov-btn"><span class="ic ic-xs"><svg><use href="#i-github"/></svg></span>GitHub</a>
+          <a href="https://github.com/enockblitto/BGED_Immobilier_App" target="_blank" rel="noopener" class="ov-btn"><span class="ic ic-xs"><svg><use href="#i-github"/></svg></span>GitHub</a>
           <a href="#" class="ov-btn"><span class="ic ic-xs"><svg><use href="#i-ext"/></svg></span>Démo</a>
         </div>
       </div>
       <div class="proj-body">
-        <div class="proj-tags"><span class="ptag">Laravel</span><span class="ptag">CRUD</span><span class="ptag">REST API</span></div>
-        <div class="proj-name">Gestion Produits &amp; Catégories</div>
-        <p class="proj-desc">Application CRUD complète avec authentification, gestion des rôles et interface d'administration.</p>
+        <div class="proj-tags"><span class="ptag">reactjs</span><span class="ptag">supabase</span></div>
+        <div class="proj-name">BGED Immobilier</div>
+        <p class="proj-desc">BGED Immobilier connecte les chercheurs de logement aux sociétés immobilières ivoiriennes, sans intermédiaire informel..</p>
       </div>
     </div>
 
     <div class="proj-card reveal">
       <div class="proj-thumb">
-        <span class="ic ic-lg"><svg><use href="#i-globe"/></svg></span>
+        <img src="image/erp_system.jpeg" alt="ERP System" />
         <div class="proj-overlay">
-          <a href="https://github.com/blittobged" target="_blank" rel="noopener" class="ov-btn"><span class="ic ic-xs"><svg><use href="#i-github"/></svg></span>GitHub</a>
+          <a href="https://github.com/enockblitto/erp_system" target="_blank" rel="noopener" class="ov-btn"><span class="ic ic-xs"><svg><use href="#i-github"/></svg></span>GitHub</a>
           <a href="#" class="ov-btn"><span class="ic ic-xs"><svg><use href="#i-ext"/></svg></span>Démo</a>
         </div>
       </div>
       <div class="proj-body">
-        <div class="proj-tags"><span class="ptag">Vue.js</span><span class="ptag">Axios</span><span class="ptag">API</span></div>
-        <div class="proj-name">CRUD Vue.js SPA</div>
-        <p class="proj-desc">Application single-page en Vue.js consommant une API REST avec gestion dynamique des ressources.</p>
+        <div class="proj-tags"><span class="ptag">htmlcss</span><span class="ptag">php</span><span class="ptag">xampp</span></div>
+        <div class="proj-name">ERP system</div>
+        <p class="proj-desc">Cette application est un ERP (Enterprise Resource Planning) pour gérer les activités d’une entreprise : gestion des clients, employés, projets, factures, sécurité, tableau de bord admin et accès selon le rôle utilisateur..</p>
       </div>
     </div>
 
@@ -1019,13 +1077,13 @@ footer {
 
     <div class="proj-card reveal">
       <div class="proj-thumb">
-        <span class="ic ic-lg"><svg><use href="#i-code"/></svg></span>
+        <img src="image/portfolio_dynamique.jpeg" alt="Portfolio Dynamique BGED" />
         <div class="proj-overlay">
           <a href="#" class="ov-btn"><span class="ic ic-xs"><svg><use href="#i-eye"/></svg></span>Voir</a>
         </div>
       </div>
       <div class="proj-body">
-        <div class="proj-tags"><span class="ptag">React JS</span><span class="ptag">Node.js</span><span class="ptag">MongoDB</span></div>
+        <div class="proj-tags"><span class="ptag">HTML/CSS</span><span class="ptag">JavaScript</span></div>
         <div class="proj-name">Portfolio Dynamique</div>
         <p class="proj-desc">Ce portfolio lui-même — conçu avec un soin extrême pour le design et l'expérience utilisateur.</p>
       </div>
@@ -1043,13 +1101,115 @@ footer {
   <p class="design-intro reveal">Au-delà du code, je crée des identités visuelles et designs graphiques via PixelLab — logos, mockups, affiches et illustrations.</p>
 
   <div class="design-grid">
-    <div class="d-item reveal"><span class="ic ic-lg"><svg><use href="#i-star"/></svg></span><span class="d-label">Logo Design</span></div>
-    <div class="d-item reveal"><span class="ic ic-lg"><svg><use href="#i-zap"/></svg></span><span class="d-label">Branding</span></div>
-    <div class="d-item reveal"><span class="ic ic-lg"><svg><use href="#i-monitor"/></svg></span><span class="d-label">UI Design</span></div>
-    <div class="d-item reveal"><span class="ic ic-lg"><svg><use href="#i-pen"/></svg></span><span class="d-label">Illustrations</span></div>
-    <div class="d-item span2 reveal"><span class="ic ic-lg"><svg><use href="#i-img"/></svg></span><span class="d-label">Mockup &amp; Affiches</span></div>
-    <div class="d-item reveal"><span class="ic ic-lg"><svg><use href="#i-mobile"/></svg></span><span class="d-label">App UI</span></div>
-    <div class="d-item reveal"><span class="ic ic-lg"><svg><use href="#i-grid"/></svg></span><span class="d-label">Flyers</span></div>
+    <div class="d-item reveal">
+      <div class="d-visual"><img src="image/affiche_pro_BGED.jpeg" alt="Affiche BGED" /></div>
+      <span class="d-label">Affiche BGED</span>
+    </div>
+    <div class="d-item reveal">
+      <div class="d-visual"><img src="image/affiche_netflix.jpeg" alt="Affiche Netflix" /></div>
+      <span class="d-label">Affiche Netflix</span>
+    </div>
+    <div class="d-item reveal">
+      <div class="d-visual"><img src="image/design_logo_lpa.jpeg" alt="Logo LPA" /></div>
+      <span class="d-label">Logo LPA</span>
+    </div>
+    <div class="d-item reveal">
+      <div class="d-visual"><img src="image/design_mes_logo.jpeg" alt="Mes logos" /></div>
+      <span class="d-label">Branding</span>
+    </div>
+    <div class="d-item reveal">
+      <div class="d-visual"><img src="image/design_badge-cda-recto.jpeg" alt="Badge CDA recto" /></div>
+      <span class="d-label">Badge CDA</span>
+    </div>
+    <div class="d-item reveal">
+      <div class="d-visual"><img src="image/design_badge-cda-verso.jpeg" alt="Badge CDA verso" /></div>
+      <span class="d-label">Badge Verso</span>
+    </div>
+    <div class="d-item reveal">
+      <div class="d-visual"><img src="image/design%20_badge-lpa-verso.jpeg" alt="Badge LPA verso" /></div>
+      <span class="d-label">Badge LPA</span>
+    </div>
+    <div class="d-item reveal">
+      <div class="d-visual"><img src="image/present_badge-cda-recto.jpeg" alt="Présentation badge CDA" /></div>
+      <span class="d-label">Présentation</span>
+    </div>
+
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche-resto-ed.jpeg" alt="Affiche resto ED" /></div>
+      <span class="d-label">Resto ED</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_auto-ecole.jpeg" alt="Affiche auto école" /></div>
+      <span class="d-label">Auto école</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_cnmi-modele1.jpeg" alt="Affiche CNMI 1" /></div>
+      <span class="d-label">CNMI 1</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_cnmi-modele2.jpeg" alt="Affiche CNMI 2" /></div>
+      <span class="d-label">CNMI 2</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_evenement-can.jpeg" alt="Affiche événement CAN" /></div>
+      <span class="d-label">CAN</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_gala.jpeg" alt="Affiche gala" /></div>
+      <span class="d-label">Gala</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_kbine.jpeg" alt="Affiche kbine" /></div>
+      <span class="d-label">Kbine</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_maquis-resto.jpeg" alt="Affiche maquis resto" /></div>
+      <span class="d-label">Maquis</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_pressind-cherubin.jpeg" alt="Affiche pressind cherubin" /></div>
+      <span class="d-label">Pressind</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_prestation.jpeg" alt="Affiche prestation" /></div>
+      <span class="d-label">Prestation</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_tournoi-efoot.jpeg" alt="Affiche tournoi e-foot" /></div>
+      <span class="d-label">E-foot</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_vente-casquette.jpeg" alt="Affiche vente casquette" /></div>
+      <span class="d-label">Casquette</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/affiche_vente-lapin.jpeg" alt="Affiche vente lapin" /></div>
+      <span class="d-label">Vente lapin</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/present_badge-cda-verso.jpeg" alt="Badge CDA présentation verso" /></div>
+      <span class="d-label">Présentation</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/present_badge-lpa-recto-verso.jpeg" alt="Badge LPA recto verso" /></div>
+      <span class="d-label">Badge LPA</span>
+    </div>
+    <div class="d-item is-hidden reveal">
+      <div class="d-visual"><img src="image/design_bdge-lpa-recto.jpeg" alt="Badge LPA recto" /></div>
+      <span class="d-label">LPA Recto</span>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <button type="button" class="design-toggle" data-expanded="false">Voir plus</button>
+  </div>
+
+  <div class="design-modal" id="designModal" aria-hidden="true">
+    <div class="design-modal-frame">
+      <button class="design-modal-close" type="button" aria-label="Fermer">×</button>
+      <img class="design-modal-img" id="designModalImg" src="" alt="" />
+      <div class="design-modal-label" id="designModalLabel">Création</div>
+    </div>
   </div>
 </section>
 
@@ -1218,6 +1378,67 @@ const barObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.25 });
 document.querySelectorAll('.skill-card').forEach(c => barObs.observe(c));
+
+/* Design gallery toggle */
+const designToggle = document.querySelector('.design-toggle');
+if (designToggle) {
+  const hiddenDesigns = document.querySelectorAll('.d-item.is-hidden');
+
+  designToggle.addEventListener('click', () => {
+    const isExpanded = designToggle.dataset.expanded === 'true';
+
+    hiddenDesigns.forEach(item => {
+      item.classList.toggle('is-hidden', isExpanded);
+    });
+
+    designToggle.dataset.expanded = String(!isExpanded);
+    designToggle.textContent = isExpanded ? 'Voir plus' : 'Voir moins';
+  });
+}
+
+/* Full-size design modal */
+const designModal = document.getElementById('designModal');
+const designModalImg = document.getElementById('designModalImg');
+const designModalLabel = document.getElementById('designModalLabel');
+const designModalClose = document.querySelector('.design-modal-close');
+
+function openDesignModal(imgEl) {
+  if (!designModal || !designModalImg || !designModalLabel || !imgEl) return;
+  designModalImg.src = imgEl.src;
+  designModalImg.alt = imgEl.alt;
+  designModalLabel.textContent = imgEl.alt;
+  designModal.classList.add('show');
+  designModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDesignModal() {
+  if (!designModal) return;
+  designModal.classList.remove('show');
+  designModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.d-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const img = item.querySelector('img');
+    if (img) openDesignModal(img);
+  });
+});
+
+if (designModalClose) {
+  designModalClose.addEventListener('click', closeDesignModal);
+}
+if (designModal) {
+  designModal.addEventListener('click', (event) => {
+    if (event.target === designModal) closeDesignModal();
+  });
+}
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && designModal && designModal.classList.contains('show')) {
+    closeDesignModal();
+  }
+});
 </script>
 </body>
 </html>
